@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="My Blog">
+  <meta name="author" content="Andrew Shay">
+  <link rel="icon" href="./static/img/favicon.ico">
+
+  <title>PyDevCheatsheet</title>
+
+  <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/custom.css">
+</head>
+
+<body>
+  <main role="main" class="container">
+
+    <!-- HEADER -->
+    <header class="site-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col pt-1">
+          <a class="site-header-name" href="/">
+            <h1 class="site-header-name">Python developer cheatsheet</h1>
+          </a>
+        </div>
+      </div>
+    </header>
+    <!-- END HEADER -->
+
+    <!-- NAVIGATION -->
+    <div class="container nav-bar">
+      <div class="row nav">
+        
+          <a class="col-md-auto p-2" href="./">Linux</a>
+        
+          <a class="col-md-auto p-2" href="./git/">Git</a>
+        
+          <a class="col-md-auto p-2" href="./pycharm/">PyCharm</a>
+        
+      </div>
+    </div>
+    <!-- END NAVIGATION -->
+
+    <div class="row">
+
+      <!-- MAIN BODY -->
+      <div class="col">
+
+        
+<!-- BLOG POST -->
+<div class="blog-post">
+  <h1 class="blog-post-title">Linux</h1>
+  <p>Основные команды и задачи Linux.</p>
+<h1>Файлы и директории</h1>
+<p><code>cd /home</code>  - перейти в директорию '/home'<br>
+<code>cd ..</code> -   перейти в директорию уровнем выше<br>
+<code>cd ../..</code> - перейти в директорию двумя уровнями выше<br>
+<code>cd</code> -  перейти в домашнюю директорию<br>
+<code>cd ~user</code> -    перейти в домашнюю директорию пользователя user<br>
+<code>cd -</code> -    перейти в директорию, в которой находились до перехода в текущую директорию<br>
+<code>pwd</code> - показать текущюю директорию<br>
+<code>ls</code> -  отобразить содержимое текущей директории<br>
+<code>ls -F</code> -   отобразить содержимое текущей директории с добавлением к именам символов, характеризующих тип<br>
+<code>ls -l</code> -   показать детализированое представление файлов и директорий в текущей директории<br>
+<code>ls -a</code> -   показать скрытые файлы и директории в текущей директории<br>
+<code>ls *[0-9]*</code> -  показать файлы и директории содержащие в имени цифры<br>
+<code>tree</code> -    показать дерево файлов и директорий, начиная от корня (/)<br>
+<code>mkdir dir1</code> -  создать директорию с именем 'dir1'<br>
+<code>mkdir dir1 dir2</code> - создать две директории одновременно<br>
+<code>mkdir -p /tmp/dir1/dir2</code> - создать дерево директорий<br>
+<code>rm -f file1</code> - удалить файл с именем 'file1'<br>
+<code>rmdir dir1</code> -  удалить директорию с именем 'dir1'<br>
+<code>rm -rf dir1</code> - удалить директорию с именем 'dir1' и рекурсивно всё её содержимое<br>
+<code>rm -rf dir1 dir2</code> -    удалить две директории и рекурсивно их содержимое<br>
+<code>mv dir1 new_dir</code> - переименовать или переместить файл или директорию<br>
+<code>cp file1 file2</code> -  сопировать файл file1 в файл file2<br>
+<code>cp dir/* .</code> -  копировать все файлы директории dir в текущую директорию<br>
+<code>cp -a /tmp/dir1 .</code> -   копировать директорию dir1 со всем содержимым в текущую директорию<br>
+<code>cp -a dir1 dir2</code> - копировать директорию dir1 в директорию dir2<br>
+<code>ln -s file1 lnk1</code> -    создать символическую ссылку на файл или директорию<br>
+<code>ln file1 lnk1</code> -   создать "жёсткую" (физическую) ссылку на файл или директорию<br>
+<code>touch -t 0712250000 fileditest</code> -  модифицировать дату и время создания файла, при его отсутствии, создать файл с указанными датой и временем (YYMMDDhhmm)<br></p>
+<h1>Поиск файлов</h1>
+<p><code>find / -name file1</code>    -   найти файлы и директории с именем file1. Поиск начать с корня (/)<br>
+<code>find / -user user1</code>    -   найти файл и директорию принадлежащие пользователю user1. Поиск начать с корня (/)<br>
+<code>find /home/user1 -name "*.bin"</code>    -   Найти все файлы и директории, имена которых оканчиваются на '. bin'. Поиск начать с '/ home/user1'<br>
+<code>find /usr/bin -type f -atime +100</code> -   найти все файлы в '/usr/bin', время последнего обращения к которым  более 100 дней<br>
+<code>find /usr/bin -type f -mtime -10</code>  -   найти все файлы в '/usr/bin', созданные или изменённые в течении последних 10 дней<br>
+<code>find / -name *.rpm -exec chmod 755 '{}' \;</code>    -   найти все фалы и директории, имена которых оканчиваются на '.rpm', и изменить права доступа к ним<br>
+<code>find / -xdev -name "*.rpm"</code>    -   найти все файлы и директории, имена которых оканчиваются на '.rpm', игнорируя съёмные носители, такие как cdrom, floppy и т.п.<br>
+<code>locate "*.ps"</code> -   найти все файлы, сожержащие в имени '.ps'. Предварительно рекомендуется выполнить команду 'updatedb'<br>
+<code>whereis halt</code>  -   показывает размещение бинарных файлов, исходных кодов и руководств, относящихся к файлу 'halt'<br>
+<code>which halt</code>    -   отображает полный путь к файлу 'halt'<br></p>
+<h1>Дисковое пространство</h1>
+<p><code>df -h</code> -   отображает информацию о смонтированных разделах с отображением общего, доступного и используемого пространства<br>
+<code>ls -lSr |more</code> -   выдаёт список файлов и директорий рекурсивно с сортировкой по возрастанию размера и позволяет осуществлять постраничный просмотр<br>
+<code>du -sh dir1</code>   -   подсчитывает и выводит размер, занимаемый директорией 'dir1' <br>
+<code>du -sk * | sort -rn</code>   -   отображает размер и имена файлов и директорий, с соритровкой по размеру<br>
+<code>rpm -q -a --qf '%10{SIZE}t%{NAME}n' | sort -k1,1n</code>   - показывает размер используемого дискового пространства, занимаемое файлами rpm-пакета, с сортировкой по размеру (fedora, redhat и т.п.)<br>
+<code>dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1,1n</code> - показывает размер используемого дискового пространства, занимаемое файлами deb-пакета, с сортировкой по размеру (ubuntu, debian т.п.)<br></p>
+<h1>Пользователи и группы</h1>
+<p><code>groupadd group_name</code>   -   создать новую группу с именем group_name<br>
+<code>groupdel group_name</code>   -   удалить группу group_name<br>
+<code>groupmod -n new_group_name old_group_name</code> -   переименовать группу old_group_name в new_group_name<br>
+<code>useradd -c "Nome Cognome" -g admin -d /home/user1 -s /bin/bash user1</code>   - создать пользователя user1, назначить ему в качестве домашнего каталога /home/user1, в качестве shell'а /bin/bash, включить его в группу admin и добавить комментарий Nome Cognome<br>
+<code>useradd user1</code> -   создать пользователя user1<br>
+<code>userdel -r user1</code>  -   удалить пользователя user1 и его домашний каталог<br>
+<code>usermod -c "User FTP" -g system -d /ftp/user1 -s /bin/nologin user1</code>   -   изменить атрибуты пользователя<br>
+<code>passwd</code>    -   сменить пароль<br>
+<code>passwd user1</code>  -   сменить пароль пользователя user1 (только root)<br>
+<code>chage -E 2005-12-31 user1</code> -   установить дату окончания действия учётной записи пользователя user1<br>
+<code>pwck</code>  -   проверить корректность системных файлов учётных записей. Проверяются файлы /etc/passwd и /etc/shadow<br>
+<code>grpck</code> -   проверяет корректность системных файлов учётных записей. Проверяется файл/etc/group<br>
+<code>newgrp [-] group_name</code> -   изменяет первичную группу текущего пользователя. Если указать "-", ситуация будет идентичной той, в которой пользователь вышил из системы и снова вошёл. Если не указывать группу, первичная группа будет назначена из /etc/passwd<br></p>
+<h1>Выставление/изменение полномочий на файлы</h1>
+<p><code>ls -lh</code>    -   просмотр полномочий на файлы и директории в текущей директории<br>
+<code>ls /tmp | pr -T5 -W$COLUMNS</code>   -   вывести содержимое директории /tmp и разделить вывод на пять колонок<br>
+<code>chmod ugo+rwx directory1</code>  -   добавить полномочия на директорию directory1 ugo(User Group Other)+rwx(Read Write eXecute) - всем полные права. Аналогичное можно сделать таким образом chmod 777 directory1<br>
+<code>chmod go-rwx directory1</code>   -   отобрать у группы и всех остальных все полномочия на директорию directory1.<br>
+<code>chown user1 file1</code> -   назначить владельцем файла file1 пользователя user1<br>
+<code>chown -R user1 directory1</code> -   назначить рекурсивно владельцем директории directory1 пользователя user1<br>
+<code>chgrp group1 file1</code>    -   сменить группу-владельца файла file1 на group1<br>
+<code>chown user1:group1 file1</code>  -   сменить владельца и группу владельца файла file1<br>
+<code>find / -perm -u+s</code> -   найти, начиная от корня, все файлы с выставленным SUID<br>
+<code>chmod u+s /bin/binary_file</code>    -   назначить SUID-бит файлу /bin/binary_file. Это даёт возможность любому пользователю запускать на выполнение файл с полномочиями владельца файла.<br>
+<code>chmod u-s /bin/binary_file</code>    -   снять SUID-бит с файла /bin/binary_file.<br>
+<code>chmod g+s /home/public</code>    -   назначить SGID-бит директории /home/public.<br>
+<code>chmod g-s /home/public</code>    -   снять SGID-бит с директории /home/public.<br>
+<code>chmod o+t /home/public</code>    - назначить STIKY-бит директории /home/public. Позволяет удалять файлы только владельцам<br>
+<code>chmod o-t /home/public</code> -  снять STIKY-бит с директории /home/public<br></p>
+<h1>Специальные атрибуты файлов</h1>
+<p><code>chattr +a file1</code>   -   позволить открывать файл на запись только в режиме добавления<br>
+<code>chattr +c file1</code>   -   позволяет ядру автоматически сжимать/разжимать содержимое файла.<br>
+<code>chattr +d file1</code>   -   указавет утилите dump игнорировать данный файл во время выполнения backup'а<br>
+<code>chattr +i file1</code>   -   делает файл недоступным для любых изменений: редактирование, удаление, перемещение, создание линков на него.<br>
+<code>chattr +s file1</code>   -   позволяет сделать удаление файла безопасным, т.е. выставленный атрибут s говорит о том, что при удалении файла, место, занимаемое файлом на диске заполняется нулями, что предотвращяет возможность восстановления данных.<br>
+<code>chattr +S file1</code>   -   указывает, что, при сохранении изменений, будет произведена синхронизация, как при выполнении команды sync<br>
+<code>chattr +u file1</code>   -   данный атрибут указывает, что при удалении файла содержимое его будет сохранено и при необходимости пользователь сможет его восстановить<br>
+<code>lsattr</code>    -   показать атрибуты файлов<br></p>
+<h1>Архивирование и сжатие файлов</h1>
+<p><code>bunzip2 file1.bz2</code> -   разжимает файл 'file1.gz'<br>
+<code>gzip file1</code>    -   сжимает файл 'file1'<br>
+<code>gzip -9 file1</code> -   сжать файл file1 с максимальным сжатием<br>
+<code>rar a file1.rar test_file</code>  -  создать rar-архив 'file1.rar' и включить в него файл test_file<br>
+<code>rar a file1.rar file1 file2 dir1</code>  -   создать rar-архив 'file1.rar' и включить в него file1, file2 и dir1<br>
+<code>rar x file1.rar</code>   -   распаковать rar-архив<br>
+<code>tar -cvf archive.tar file1</code>    -   создать tar-архив archive.tar, содержащий файл file1<br>
+<code>tar -cvf archive.tar file1 file2 dir1</code> -   создать tar-архив archive.tar, содержащий файл file1, file2 и dir1<br>
+<code>tar -tf archive.tar</code>   -   показать содержимое архива<br>
+<code>tar -xvf archive.tar</code>  -   распаковать архив<br>
+<code>tar -xvf archive.tar -C /tmp</code>  -   распаковать архив в /tmp<br>
+<code>tar -cvfj archive.tar.bz2 dir1</code>    -   создать архив и сжать его с помощью bzip2<br>
+<code>tar -xvfj archive.tar.bz2</code> -   разжать архив и распаковать его<br>
+<code>tar -cvfz archive.tar.gz dir1</code> -   создать архив и сжать его с помощью gzip<br>
+<code>tar -xvfz archive.tar.gz</code>  -   разжать архив и распаковать его<br>
+<code>zip file1.zip file1</code>   -   создать сжатый zip-архив<br>
+<code>zip -r file1.zip file1 file2 dir1</code> -   создать сжатый zip-архив и со включением в него нескольких файлов и/или директорий<br>
+<code>unzip file1.zip</code>   -   разжать и распаковать zip-архив<br></p>
+<h1>DEB пакеты (Debian, Ubuntu и тому подобное)</h1>
+<p><code>dpkg -i package.deb</code>   -   установить / обновить пакет<br>
+<code>dpkg -r package_name</code>  -   удалить пакет из системы<br>
+<code>dpkg -l</code>   -   показать все пакеты, установленные в систему<br>
+<code>dpkg -l | grep httpd</code>  -   среди всех пакетов, установленных в системе, найти пакет содержащий в своём имени "httpd"<br>
+<code>dpkg -s package_name</code>  -   отобразить инфрмацию о конкретном пакете<br>
+<code>dpkg -L package_name</code>  -   вывести список файлов, входящих в пакет, установленный в систему<br>
+<code>dpkg --contents package.deb</code>   -   отобразить список файлов, входящих в пакет, который ешё не установлен в систему<br>
+<code>dpkg -S /bin/ping</code> -   найти пакет, в который входит указанный файл.<br></p>
+<h1>APT - средство управление пакетами (Debian, Ubuntu и тому подобное)</h1>
+<p><code>apt-get install package_name</code>  -   установить / обновить пакет<br>
+<code>apt-cdrom install package_name</code>    -   установить / обновить пакет с cdrom'а<br>
+<code>apt-get update</code>    -   получить обновлённые списки пакетов<br>
+<code>apt-get upgrade</code>   -   обновить пакеты, установленные в систему<br>
+<code>apt-get remove package_name</code>   -   удалить пакет, установленный в систему с сохранением файлов конфигурации<br>
+<code>apt-get purge package_name</code>    -   удалить пакет, установленный в систему с удалением файлов конфигурации<br>
+<code>apt-get check</code> -   проверить целостность зависимостей<br>
+<code>apt-get clean</code> -   удалить загруженные архивные файлы пакетов<br>
+<code>apt-get autoclean</code> -   удалить старые загруженные архивные файлы пакетов<br></p>
+<h1>Просмотр содержимого файлов</h1>
+<p><code>cat file1</code> -   вывести содержимое файла file1 на стандартное устройсво вывода<br>
+<code>tac file1</code> -   вывести содержимое файла file1 на стандартное устройсво вывода в обратном порядке (последняя строка становиться первой и т.д.)<br>
+<code>more file1</code>    -   постраничный вывод содержимого файла file1 на стандартное устройство вывода<br>
+<code>less file1</code>    -   постраничный вывод содержимого файла file1 на стандартное устройство вывода, но с возможностью пролистывания в обе стороны (вверх-вниз), поиска по содержимому и т.п.<br>
+<code>head -2 file1</code> -   вывести первые две строки файла file1 на стандартное устройство вывода. По-умолчанию выводится десять строк<br>
+<code>tail -2 file1</code>     -   вывести последние две строки файла file1 на стандартное устройство вывода. По-умолчанию выводится десять строк.<br>
+<code>tail -f /var/log/messages</code> -   выводить содержимое файла /var/log/messages на стандартное устройство вывода по мере появления в нём текста.<br></p>
+<h1>Манипуляции с текстом</h1>
+<p><code>cat file_originale | [operation: sed, grep, awk, grep и т.п.] &gt; result.txt</code>    -   общий синтаксис выполнения действий по обработке содержимого файла и вывода результата в новый<br>
+<code>cat file_originale | [operazione: sed, grep, awk, grepи т.п.] &gt;&gt; result.txt</code>   -   общий синтаксис выполнения действий по обработке содержимого файла и вывода результата в существующий файл. Если файл не существует, он будет создан<br>
+<code>grep Aug /var/log/messages из файла '/var/log/messages'</code>   - отобрать и вывести на стандартное устройство вывода строки, содержащие "Aug"<br>
+<code>grep ^Aug /var/log/messages    из файла '/var/log/messages'</code>   - отобрать и вывести на стандартное устройство вывода строки, начинающиеся на "Aug"<br>
+<code>grep [0-9] /var/log/messages   из файла '/var/log/messages'</code>   - отобрать и вывести на стандартное устройство вывода строки, содержащие цифры<br>
+<code>grep Aug -R /var/log/*</code>    -   отобрать и вывести на стандартное устройство вывода строки, содержащие "Aug", во всех файлах, находящихся в директории /var/log и ниже<br>
+<code>sed 's/stringa1/stringa2/g' example.txt</code>   -   в файле example.txt заменить "string1" на "string2", результат вывести на стандартное устройство вывода.<br>
+<code>sed '/^$/d' example.txt</code>   -   удалить пустые строки из файла example.txt<br>
+<code>sed '/ *#/d; /^$/d' example.txt</code>   -   удалить пустые строки и комментарии из файла example.txt<br>
+<code>echo 'esempio' | tr '[:lower:]' '[:upper:]'</code>   -   преобразовать символы из нижнего регистра в верхний<br>
+<code>sed -e '1d' result.txt</code>    -   удалить первую строку из файла example.txt<br>
+<code>sed -n '/string1/p'</code>   -   отобразить только строки содержашие "string1"<br>
+<code>sed -e 's/ *$//' example.txt</code>  -   удалить пустые символы в в конце каждой строки<br>
+<code>sed -e 's/string1//g' example.txt</code> -   удалить строку "string1" из текста не изменяя всего остального<br>
+<code>sed -n '1,8p;5q' example.txt</code>  -   взять из файла с первой по восьмую строки и из них вывести первые пять<br>
+<code>sed -n '5p;5q' example.txt</code>    -   вывести пятую строку<br>
+<code>sed -e 's/0*/0/g' example.txt</code> -   заменить последовательность из любого количества нулей одним нулём<br>
+<code>cat -n file1</code> -    пронумеровать строки при выводе содержимого файла<br>
+<code>cat example.txt | awk 'NR%2==1'</code>   -   при выводе содержимого файла, не выводить чётные строки файла<br>
+<code>echo a b c | awk '{print $1}'</code> -   вывести первую колонку. Разделение, по-умолчанию, по проблелу/пробелам или символу/символам табуляции<br>
+<code>echo a b c | awk '{print $1,$3}'</code>  -   вывести первую и треью колонки. Разделение, по-умолчанию, по проблелу/пробелам или символу/символам табуляции<br>
+<code>paste file1 file2</code> -   объединить содержимое file1 и file2 в виде таблицы: строка 1 из file1 = строка 1 колонка 1-n, строка 1 из file2 = строка 1 колонка n+1-m<br>
+<code>paste -d '+' file1 file2</code>  -   объединить содержимое file1 и file2 в виде таблицы с разделителем "+"<br>
+<code>sort file1 file2</code>  -   отсортировать содержимое двух файлов<br>
+<code>sort file1 file2 | uniq</code>   -   отсортировать содержимое двух файлов, не отображая повторов<br>
+<code>sort file1 file2 | uniq -u</code>    -   отсортировать содержимое двух файлов, отображая только уникальные строки (строки, встречающиеся в обоих файлах, не выводятся на стандартное устройство вывода)<br>
+<code>sort file1 file2 | uniq -d</code>    -   отсортировать содержимое двух файлов, отображая только повторяющиеся строки<br>
+<code>comm -1 file1 file2</code>   -   сравнить содержимое двух файлов, не отображая строки принадлежащие файлу 'file1'<br>
+<code>comm -2 file1 file2</code>   -   сравнить содержимое двух файлов, не отображая строки принадлежащие файлу 'file2'<br>
+<code>comm -3 file1 file2</code>   -   сравнить содержимое двух файлов, удаляя строки встречающиеся в обоих файлах<br></p>
+<h1>Преобразование наборов символов и файловых форматов</h1>
+<p><code>dos2unix filedos.txt fileunix.txt</code> -   конвертировать файл текстового формата из MSDOS в UNIX (разница в символах возврата каретки)<br>
+<code>unix2dos fileunix.txt filedos.txt</code> -   конвертировать файл текстового формата из UNIX в MSDOS (разница в символах возврата коретки)<br>
+<code>recode ..HTML &lt; page.txt &gt; page.html</code>  -   конвертировать содержимое тестового файла page.txt в html-файл page.html<br>
+<code>recode -l | more</code>  -   вывести список доступных форматов<br></p>
+
+</div>
+<!-- END BLOG POST -->
+
+</div>
+<!-- END MAIN BODY -->
+
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    Copyright © 2018 by Igor Limarev - Powered by <a href="https://www.getlektor.com/">Lektor</a> and <a href="https://github.com/Andrew-Shay/lektor-theme-simple-strap">Simple Strap</a> theme.
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>

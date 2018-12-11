@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="My Blog">
+  <meta name="author" content="Andrew Shay">
+  <link rel="icon" href="../static/img/favicon.ico">
+
+  <title>PyDevCheatsheet</title>
+
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/custom.css">
+</head>
+
+<body>
+  <main role="main" class="container">
+
+    <!-- HEADER -->
+    <header class="site-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col pt-1">
+          <a class="site-header-name" href="/">
+            <h1 class="site-header-name">Python developer cheatsheet</h1>
+          </a>
+        </div>
+      </div>
+    </header>
+    <!-- END HEADER -->
+
+    <!-- NAVIGATION -->
+    <div class="container nav-bar">
+      <div class="row nav">
+        
+          <a class="col-md-auto p-2" href="../">Linux</a>
+        
+          <a class="col-md-auto p-2" href="../git/">Git</a>
+        
+          <a class="col-md-auto p-2" href="../pycharm/">PyCharm</a>
+        
+      </div>
+    </div>
+    <!-- END NAVIGATION -->
+
+    <div class="row">
+
+      <!-- MAIN BODY -->
+      <div class="col">
+
+        
+<!-- BLOG POST -->
+<div class="blog-post">
+  <h1 class="blog-post-title">Git</h1>
+  <p>Основные команды и задачи Git.</p>
+<h1>Создать новый репозиторий</h1>
+<p><code>git init</code> - создать новый проект в текущей директории<br>
+<code>git init folder-name</code>  - создать новый проект в указанной директории<br></p>
+<h1>Клонирование репозитория</h1>
+<p><code>git clone https://github.com:nicothin/web-design.git</code> - клонировать удаленный репозиторий в одноименную директорию<br>
+<code>git clone https://github.com:nicothin/web-design.git FolderName</code> - клонировать удаленный репозиторий в директорию «FolderName»<br>
+<code>git clone https://github.com:nicothin/web-design.git .</code> - клонировать репозиторий в текущую директорию<br></p>
+<h1>Просмотр изменений</h1>
+<p><code>git status</code> - показать состояние репозитория (отслеживаемые, изменённые, новые файлы и пр.)<br>
+<code>git diff</code> - сравнить рабочую директорию и индекс (неотслеживаемые файлы ИГНОРИРУЮТСЯ)<br>
+<code>git diff --color-words</code> - сравнить рабочую директорию и индекс, показать отличия в словах (неотслеживаемые файлы ИГНОРИРУЮТСЯ)<br>
+<code>git diff index.html</code> - сравнить файл из рабочей директории и индекс<br>
+<code>git diff HEAD</code> -  сравнить рабочую директорию и коммит, на который указывает HEAD (неотслеживаемые файлы ИГНОРИРУЮТСЯ)<br>
+<code>git diff --staged</code> - сравнить индекс и коммит с HEAD<br>
+<code>git diff master feature</code> - посмотреть что сделано в ветке feature по сравнению с веткой master<br>
+<code>git diff --name-only master feature</code> - посмотреть что сделано в ветке feature по сравнению с веткой master, показать только имена файлов<br>
+<code>git diff master...feature</code> - посмотреть что сделано в ветке feature с момента (коммита) расхождения с master<br></p>
+<h1>Добавление изменений в индекс</h1>
+<p><code>git add .</code> - добавить в индекс все новые, изменённые, удалённые файлы из текущей директории и её поддиректорий<br>
+<code>git add text.txt</code> - добавить в индекс указанный файл (был изменён, был удалён или это новый файл)<br>
+<code>git add -i</code> - запустить интерактивную оболочку для добавления в индекс только выбранных файлов<br>
+<code>git add -p</code> - показать новые/изменённые файлы по очереди с указанием их изменений и вопросом об отслеживании/индексировании<br></p>
+<h1>Удаление изменений из индекса</h1>
+<p><code>git reset</code> - убрать из индекса все добавленные в него изменения (в рабочей директории все изменения сохранятся), антипод git add<br>
+<code>git reset readme.txt</code> - убрать из индекса изменения указанного файла (в рабочей директории изменения сохранятся)<br></p>
+<h1>Отмена изменений</h1>
+<p><code>git checkout text.txt</code> - ОПАСНО: отменить изменения в файле, вернуть состояние файла, имеющееся в индексе<br>
+<code>git reset --hard</code> - ОПАСНО: отменить изменения; вернуть то, что в коммите, на который указывает HEAD (незакомиченные изменения удалены из индекса и из рабочей директории, неотслеживаемые файлы останутся на месте)<br>
+<code>git clean -df</code> - удалить неотслеживаемые файлы и директории<br></p>
+<h1>Коммиты</h1>
+<p><code>git commit -m "Name of commit"</code> - зафиксировать в коммите проиндексированные изменения (закоммитить), добавить сообщение<br>
+<code>git commit -a -m "Name of commit"</code> - проиндексировать отслеживаемые файлы (ТОЛЬКО отслеживаемые, но НЕ новые файлы) и закоммитить, добавить сообщение<br></p>
+<h1>Отмена коммитов и перемещение по истории</h1>
+<p><code>git revert HEAD --no-edit</code> - создать новый коммит, отменяющий изменения последнего коммита без запуска редактора сообщения<br>
+<code>git revert b9533bb --no-edit</code> - то же, но отменяются изменения, внесённые коммитом с указанным хешем (b9533bb)<br>
+<code>git commit --amend -m "Название"</code> - «перекоммитить» изменения последнего коммита, заменить его новым коммитом с другим сообщением (сдвинуть текущую ветку на один коммит назад, сохранив рабочую директорию и индекс «как есть», создать новый коммит с данными из «отменяемого» коммита, но новым сообщением)<br>
+<code>git reset --hard @~</code> - передвинуть HEAD (и ветку) на предыдущий коммит, рабочую директорию и индекс сделать такими, какими они были в момент предыдущего коммита<br>
+<code>git reset --hard 75e2d51</code> - передвинуть HEAD (и ветку) на коммит с указанным хешем, рабочую директорию и индекс сделать такими, какими они были в момент указанного коммита<br>
+<code>git reset --soft @~</code> - передвинуть HEAD (и ветку) на предыдущий коммит, но в рабочей директории и индексе оставить все изменения<br>
+<code>git reset --soft @~2</code> - то же, но передвинуть HEAD (и ветку) на 2 коммита назад<br>
+<code>git reset @~</code> - передвинуть HEAD (и ветку) на предыдущий коммит, рабочую директорию оставить как есть, индекс сделать таким, каким он был в момент предыдущего коммита (удобнее, чем git reset --soft @~, если индекс нужно задать заново)<br>
+<code>git reset --keep @~</code> - передвинуть HEAD (и ветку) на предыдущий коммит, сбросить индекс, но в рабочей директории оставить изменения, если возможно (если файл с изменениями между коммитами менялся, будет выдана ошибка и переключение не произойдёт)<br></p>
+<h1>Временно переключиться на другой коммит</h1>
+<p><code>git checkout b9533bb</code> - переключиться на коммит с указанным хешем (переместить HEAD на указанный коммит, рабочую директорию вернуть к состоянию, на момент этого коммита)<br>
+<code>git checkout master</code> - переключиться на коммит, на который указывает master (переместить HEAD на коммит, на который указывает master, рабочую директорию вернуть к состоянию на момент этого коммита)<br></p>
+<h1>Переключиться на другой коммит и продолжить работу с него</h1>
+<p><code>git checkout -b new-branch 5589877</code> - создать ветку new-branch, начинающуюся с коммита c хешем 5589877 (переместить HEAD на указанный коммит, рабочую директорию вернуть к состоянию, на момент этого коммита, создать указатель на этот коммит (ветку) с указанным именем)<br></p>
+<h1>Восстановление изменений</h1>
+<p><code>git checkout 5589877 index.html</code> - восстановить в рабочей директории указанный файл на момент указанного коммита (и добавить это изменение в индекс) (git reset index.html для удаления из индекса, но сохранения изменений в файле)<br></p>
+<h1>Копирование коммита (перенос коммитов)</h1>
+<p><code>git cherry-pick 5589877</code> - скопировать на активную ветку изменения из указанного коммита, закоммитить эти изменения<br>
+<code>git cherry-pick master~2..master</code> - скопировать на активную ветку изменения из master (2 последних коммита)<br>
+<code>git cherry-pick -n 5589877</code> - скопировать на активную ветку изменения из указанного коммита, но НЕ КОММИТИТЬ (подразумевается, что мы сами потом закоммитим)<br>
+<code>git cherry-pick master..feature</code> - скопировать на активную ветку изменения из всех коммитов ветки feature с момента её расхождения с master (похоже на слияние веток, но это копирование изменений, а не слияние), закоммитить эти изменения; это может вызвать конфликт<br>
+<code>git cherry-pick --abort</code> - прервать конфликтный перенос коммитов<br>
+<code>git cherry-pick --continue</code> - продолжить конфликтный перенос коммитов (сработает только после решения конфликта)<br></p>
+<h1>Удаление файла</h1>
+<p><code>git rm text.txt</code> - удалить отслеживаемый неизменённый файл и проиндексировать это изменение<br>
+<code>git rm -f text.txt</code> - удалить отслеживаемый изменённый файл и проиндексировать это изменение<br>
+<code>git rm -r log/</code> - удалить всё содержимое отслеживаемой директории log/ и проиндексировать это изменение<br>
+<code>git rm ind*</code> - удалить все отслеживаемые файлы с именем, начинающимся на «ind» в текущей директории и проиндексировать это изменение<br>
+<code>git rm --cached readme.txt</code> - удалить из отслеживаемых индексированный файл (ФАЙЛ ОСТАНЕТСЯ НА МЕСТЕ) (часто используется для нечаянно добавленных в отслеживаемые файлов)<br></p>
+<h1>Перемещение/переименование файлов</h1>
+<p><code>git mv text.txt test_new.txt</code> - переименовать файл «text.txt» в «test_new.txt» и проиндексировать это изменение<br>
+<code>git mv readme_new.md folder/</code> - переместить файл readme_new.md в директорию folder/ (должна существовать) и проиндексировать это изменение<br></p>
+<h1>История коммитов</h1>
+<p><code>git log master</code> - показать коммиты в указанной ветке<br>
+<code>git log -2</code> - показать последние 2 коммита в активной ветке<br>
+<code>git log -2 --stat</code> - показать последние 2 коммита и статистику внесенных ими изменений<br>
+<code>git log -p -22</code> - показать последние 22 коммита и внесенную ими разницу на уровне строк<br>
+<code>git log --graph -10</code> - показать последние 10 коммитов с ASCII-представлением ветвления<br>
+<code>git log --since=2.weeks</code> - показать коммиты за последние 2 недели<br>
+<code>git log --after '2018-06-30'</code> - показать коммиты, сделанные после указанной даты<br>
+<code>git log index.html</code> - показать историю изменений файла index.html (только коммиты)<br>
+<code>git log -5 index.html</code> - показать историю изменений файла index.html, последние 5 коммитов (только коммиты)<br>
+<code>git log -p index.html</code> - показать историю изменений файла index.html (коммиты и изменения)<br>
+<code>git log -G'myFunction' -p</code> - показать все коммиты, в которых менялись строки с myFunction (в кавычках регулярное выражение)<br>
+<code>git log -L '/&lt;head&gt;/','/&lt;\/head&gt;/':index.html</code> - показать изменения от указанного до указанного регулярных выражений в указанном файле<br>
+<code>git log --grep fix</code> - показать коммиты, в описании которых есть буквосочетание fix (регистрозависимо, только коммиты текущей ветки)<br>
+<code>git log --grep fix -i</code> - показать коммиты, в описании которых есть буквосочетание fix (регистроНЕзависимо, только коммиты текущей ветки)<br>
+<code>git log --grep 'fix(ing|me)' -P</code> - показать коммиты, в описании которых есть совпадения для регулярного выражения (только коммиты текущей ветки)<br>
+<code>git log --pretty=format:"%h - %an, %ar : %s" -4</code> - показать последние 4 коммита с форматированием выводимых данных<br>
+<code>git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short</code> - мой формат вывода, висящий на алиасе оболочки<br>
+<code>git log master..branch_99</code> - показать коммиты из ветки branch_99, которые не влиты в master<br>
+<code>git log branch_99..master</code> - показать коммиты из ветки master, которые не влиты в branch_99<br>
+<code>git log master...branch_99 --boundary -- graph</code> - показать коммиты из указанных веток, начиная с их расхождения (коммит расхождения будет показан)<br>
+<code>git show 60d6582</code> - показать изменения из коммита с указанным хешем<br>
+<code>git show HEAD~</code> - показать данные о предыдущем коммите в активной ветке<br>
+<code>git show @~</code> - аналогично предыдущему<br>
+<code>git show HEAD~3</code> - показать данные о коммите, который был 3 коммита назад<br>
+<code>git show my_branch~2</code> - показать данные о коммите, который был 2 коммита назад в указанной ветке<br>
+<code>git show @~:index.html</code> - показать контент указанного файла на момент предыдущего (от HEAD) коммита<br>
+<code>git show :/"подвал"</code> - показать самый новый коммит, в описании которого есть указанное слово (из любой ветки)<br></p>
+<h1>Ветки</h1>
+<p><code>git branch</code> - показать список веток<br>
+<code>git branch -v</code> - показать список веток и последний коммит в каждой<br>
+<code>git branch new_branch</code> - создать новую ветку с указанным именем на текущем коммите<br>
+<code>git branch new_branch 5589877</code> - создать новую ветку с указанным именем на указанном коммите<br>
+<code>git branch -f master 5589877</code> - переместить ветку master на указанный коммит<br>
+<code>git branch -f master master~2</code> - переместить ветку master на 2 коммита назад<br>
+<code>git checkout new_branch</code> - перейти в указанную ветку<br>
+<code>git checkout -b new_branch</code> - создать новую ветку с указанным именем и перейти в неё<br>
+<code>git checkout -B master 5589877</code> - переместить ветку с указанным именем на указанный коммит и перейти в неё<br>
+<code>git merge hotfix</code> - влить в ветку, в которой находимся, данные из ветки hotfix<br>
+<code>git merge hotfix -m "Горячая правка"</code> - влить в ветку, в которой находимся, данные из ветки hotfix (указано сообщение коммита слияния)<br>
+<code>git merge hotfix --log</code> - влить в ветку, в которой находимся, данные из ветки hotfix, показать редактор описания коммита, добавить в него сообщения вливаемых коммитов<br>
+<code>git merge hotfix --no-ff</code> - влить в ветку, в которой находимся, данные из ветки hotfix, запретить простой сдвиг указателя, изменения из hotfix «останутся» в ней, а в активной ветке появится только коммит слияния<br>
+<code>git branch -d hotfix</code> - удалить ветку hotfix (используется, если её изменения уже влиты в главную ветку)<br>
+<code>git branch --merged</code> - показать ветки, уже слитые с активной<br>
+<code>git branch --no-merged</code> - показать ветки, не слитые с активной<br>
+<code>git branch -a</code> - показать все имеющиеся ветки (в т.ч. на удаленных репозиториях)<br>
+<code>git branch -m old_branch_name new_branch_name</code> - переименовать локально ветку old_branch_name в new_branch_name<br>
+<code>git branch -m new_branch_name</code> - переименовать локально ТЕКУЩУЮ ветку в new_branch_name<br>
+<code>git push origin :old_branch_name new_branch_name</code> - применить переименование в удаленном репозитории<br>
+`git branch --unset-upstream # завершить процесс переименования<br></p>
+<h1>Временное сохранение изменений без коммита</h1>
+<p><code>git stash</code> - временно сохранить незакоммиченные изменения и убрать их из рабочей директории<br>
+<code>git stash pop</code> - вернуть сохраненные командой git stash изменения в рабочую директорию<br></p>
+<h1>Удалённые репозитории</h1>
+<p><code>git remote -v</code> - показать список удалённых репозиториев, связанных с локальным<br>
+<code>git remote remove origin</code> - убрать привязку удалённого репозитория с сокр. именем origin<br>
+<code>git remote add origin https://github.com:nicothin/test.git</code> - добавить удалённый репозиторий (с сокр. именем origin) с указанным URL<br>
+<code>git remote rm origin</code> - удалить привязку удалённого репозитория<br>
+<code>git remote show origin</code> - получить данные об удалённом репозитории с сокращенным именем origin<br>
+<code>git fetch origin</code> - скачать все ветки с удаленного репозитория (с сокр. именем origin), но не сливать со своими ветками<br>
+<code>git fetch origin master</code> - то же, но скачивается только указанная ветка<br>
+<code>git checkout --track origin/github_branch</code> - создать локальную ветку github_branch (данные взять из удалённого репозитория с сокр. именем origin, ветка github_branch) и переключиться на неё<br>
+<code>git push origin master</code> - отправить в удалённый репозиторий (с сокр. именем origin) данные своей ветки master<br>
+<code>git pull origin</code> - влить изменения с удалённого репозитория (все ветки)<br>
+<code>git pull origin master</code> - влить изменения с удалённого репозитория (только указанная ветка)<br></p>
+
+</div>
+<!-- END BLOG POST -->
+
+</div>
+<!-- END MAIN BODY -->
+
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    Copyright © 2018 by Igor Limarev - Powered by <a href="https://www.getlektor.com/">Lektor</a> and <a href="https://github.com/Andrew-Shay/lektor-theme-simple-strap">Simple Strap</a> theme.
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>
